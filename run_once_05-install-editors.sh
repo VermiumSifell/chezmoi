@@ -1,2 +1,2 @@
 #!/bin/env sh
-sudo pacman --noconfirm -S emacs nano vim
+sudo pacman --noconfirm -S emacs nano vim code
