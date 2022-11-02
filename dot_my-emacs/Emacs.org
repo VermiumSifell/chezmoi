@@ -1,4 +1,4 @@
-#+title Vermium's Emacs configuration
+#+title Vermium's Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
 
 * Set path
@@ -760,6 +760,16 @@
      ("C-c C->" . mc/mark-all-like-this)
      ("C-c C-SPC" . mc/edit-lines)
      ))
+#+end_src
+
+** Chezmoi
+#+begin_src emacs-lisp
+  (use-package chezmoi
+    :bind
+    ("C-c C f" . chezmoi-find)
+    ("C-c C s" . chezmoi-write)
+    :hook
+    (org-babel-post-tangle . chezmoi-write))
 #+end_src
 
 * Development
