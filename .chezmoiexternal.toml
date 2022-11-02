@@ -13,3 +13,8 @@
     url = "https://github.com/plexus/chemacs2.git"
     refreshPeriod = "168h"
     stripComponents = 1
+[".paru"]
+    type = "git-repo"
+    url = "https://aur.archlinux.org/paru.git"
+    refreshPeriod = "168h"
+    stripComponents = 1
