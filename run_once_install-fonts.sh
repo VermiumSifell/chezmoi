@@ -1,2 +1,2 @@
 #!/bin/env sh
-sudo pacman -S ttf-fontawesome ttf-fire-code
+sudo pacman -S ttf-font-awesome ttf-fira-code
