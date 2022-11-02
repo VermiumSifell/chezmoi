@@ -1,2 +1,2 @@
 #!/bin/env sh
-sudo pacman -S zsh alacritty
+sudo pacman --noconfirm -S zsh alacritty

@@ -1,2 +1,2 @@
 #!/bin/env sh
-sudo pacman -S ttf-font-awesome ttf-fira-code
+sudo pacman --noconfirm -S ttf-font-awesome ttf-fira-code

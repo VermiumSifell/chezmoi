@@ -1,2 +1,2 @@
 #!/bin/env sh
-sudo pacman -S slock
+sudo pacman --noconfirm -S slock

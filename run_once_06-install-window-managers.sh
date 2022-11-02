@@ -1,2 +1,2 @@
 #!/bin/env sh
-sudo pacman -S i3-gaps
+sudo pacman --noconfirm -S i3-gaps

@@ -1,3 +1,3 @@
 #!/bin/env sh
-sudo pacman -S meson
-paru -S mu
+sudo pacman --noconfirm -S meson
+paru --noconfirm -S mu
