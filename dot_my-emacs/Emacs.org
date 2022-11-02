@@ -111,7 +111,7 @@
 ** Vertico
 #+begin_src emacs-lisp
 
-  (defun keo/minibuffer-backward-kill (arg)
+  (defun vs/minibuffer-backward-kill (arg)
     (interactive "p")
     (cond
      ;; When minibuffer has ~/
@@ -138,7 +138,7 @@
                 ("C-f" . vertico-exit)
                 :map minibuffer-local-map
                 ("M-h" . backward-kill-word)
-                ("" . keo/minibuffer-backward-kill))
+                ("" . vs/minibuffer-backward-kill))
     :custom
     (vertico-cycle t)
     :init
@@ -431,11 +431,11 @@
 #+begin_src emacs-lisp
   (use-package general
     :config
-    (general-create-definer keo/exwm-keyboard
+    (general-create-definer vs/exwm-keyboard
       :keymaps '(normal insert visual emacs)
       :prefix "s"
       :global-prefix "s")
-    (general-create-definer keo/leader-keys
+    (general-create-definer vs/leader-keys
       :keymaps '(normal insert visual emacs)
       :prefix "SPC"
       :global-prefix "C-SPC"))
@@ -1131,19 +1131,19 @@
 * Emacs startup time
 ** Display start time
 #+begin_src emacs-lisp
-  (defun keo/display-startup-time ()
+  (defun vs/display-startup-time ()
     (message "Emacs loaded in %s with %d garbage collections."
              (format "%.2f seconds"
                      (float-time
                        (time-subtract after-init-time before-init-time)))
              gcs-done))
 
-  (add-hook 'emacs-startup-hook #'keo/display-startup-time)
+  (add-hook 'emacs-startup-hook #'vs/display-startup-time)
 #+end_src
 
 * Functions
 #+begin_src emacs-lisp
-  (defun keo/lookup-password (&rest keys)
+  (defun vs/lookup-password (&rest keys)
     (let ((result (apply #'auth-source-search keys)))
       (if result
           (funcall (plist-get (car result) :secret))
@@ -1167,7 +1167,7 @@
 * Functions
 ** Run a program
 #+begin_src emacs-lisp
-  (defun keo/run-program (command)
+  (defun vs/run-program (command)
     (let ((command-parts (split-string command "[ ]+")))
       (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
 #+end_src
@@ -1175,8 +1175,8 @@
 ** Complete list to run program
 Complete in a list of things to run that program
 #+begin_src emacs-lisp
-  (defun keo/list-complete-run-program (programs)
-      (keo/run-program
+  (defun vs/list-complete-run-program (programs)
+      (vs/run-program
        (completing-read
         "Choose a program to run: "
         programs
@@ -1186,9 +1186,9 @@ Complete in a list of things to run that program
 
 ** Completion all commands and run
 #+begin_src emacs-lisp
-  (defun keo/list-complete-run-program-all-programs ()
+  (defun vs/list-complete-run-program-all-programs ()
     (interactive)
-    (keo/list-complete-run-program (list-directory "/usr/bin")))
+    (vs/list-complete-run-program (list-directory "/usr/bin")))
 #+end_src
 
 * Org mode
@@ -1196,7 +1196,7 @@ Complete in a list of things to run that program
 #+begin_src emacs-lisp
   (straight-use-package 'org)
 
-  (defun keo/org-font-setup ()
+  (defun vs/org-font-setup ()
     ;; Replace list hyphen with dot
     (font-lock-add-keywords 'org-mode
                             '(("^ *\\([-]\\) "
@@ -1222,13 +1222,13 @@ Complete in a list of things to run that program
     (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
     (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
 
-  (defun keo/org-mode-setup ()
+  (defun vs/org-mode-setup ()
     (org-indent-mode)
     (variable-pitch-mode 1)
     (visual-line-mode 1))
 
   (use-package org
-    :hook (org-mode . keo/org-mode-setup)
+    :hook (org-mode . vs/org-mode-setup)
     :config
     (setq org-ellipsis " ▾")
 
@@ -1348,7 +1348,7 @@ Complete in a list of things to run that program
           (define-key global-map (kbd "C-c j")
             (lambda () (interactive) (org-capture nil "jj")))
 
-          (keo/org-font-setup))
+          (vs/org-font-setup))
 
     (use-package org-bullets
       :after org
@@ -1356,13 +1356,13 @@ Complete in a list of things to run that program
       :custom
       (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-    (defun keo/org-mode-visual-fill ()
+    (defun vs/org-mode-visual-fill ()
       (setq visual-fill-column-width 100
             visual-fill-column-center-text t)
       (visual-fill-column-mode 1))
 
     (use-package visual-fill-column
-      :hook (org-mode . keo/org-mode-visual-fill))
+      :hook (org-mode . vs/org-mode-visual-fill))
 
     (setq org-startup-folded t)
 
@@ -1383,14 +1383,14 @@ Complete in a list of things to run that program
 #+begin_src emacs-lisp
 
     ;; Automatically tangle our Emacs.org config file when we save it
-    (defun keo/org-babel-tangle-config ()
+    (defun vs/org-babel-tangle-config ()
       (when (string-equal (file-name-directory (buffer-file-name))
                           (expand-file-name "~/.my-emacs/"))
         ;; Dynamic scoping to the rescue
         (let ((org-confirm-babel-evaluate nil))
           (org-babel-tangle))))
 
-    (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'keo/org-babel-tangle-config)))
+    (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'vs/org-babel-tangle-config)))
 
 #+end_src
 
@@ -1467,8 +1467,8 @@ Complete in a list of things to run that program
 * Spotify
 #+begin_src emacs-lisp
   (use-package counsel-spotify)
-  (setq counsel-spotify-client-id (keo/lookup-password :host "spotify-emacs-id"))
-  (setq counsel-spotify-client-secret (keo/lookup-password :host "spotify-emacs-secret"))
+  (setq counsel-spotify-client-id (vs/lookup-password :host "spotify-emacs-id"))
+  (setq counsel-spotify-client-secret (vs/lookup-password :host "spotify-emacs-secret"))
 #+end_src
 
 * Tabs
@@ -1479,7 +1479,7 @@ Complete in a list of things to run that program
 * Terminals
 ** Eshell
 #+begin_src emacs-lisp
-  (defun keo/configure-eshell ()
+  (defun vs/configure-eshell ()
     ;; Save command history when commands are entered
     (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
 
@@ -1499,7 +1499,7 @@ Complete in a list of things to run that program
   (use-package exec-path-from-shell)
 
   (use-package eshell
-    :hook (eshell-first-time-mode . keo/configure-eshell)
+    :hook (eshell-first-time-mode . vs/configure-eshell)
     :config
 
     (with-eval-after-load 'esh-opt
@@ -1515,7 +1515,7 @@ Complete in a list of things to run that program
 
 * General leader key
 #+begin_src emacs-lisp
-    (keo/leader-keys
+    (vs/leader-keys
       "t"  '(:ignore t :which-key "Toggles")
       "tt" '(counsel-load-theme :which-key "Choose Theme")
       "o" '(:ignore t :which-key "Org")
