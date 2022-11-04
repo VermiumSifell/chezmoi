@@ -194,7 +194,7 @@ bindsym --release $mod+Shift+s exec "slock"
 exec setxkbmap se
 
 # Start external monitor
-exec --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP-1 &
+exec_always --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP-1
 
 # Restart polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
