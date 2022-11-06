@@ -204,3 +204,6 @@ exec picom
 
 # Set background
 exec --no-startup-id feh --bg-scale ~/wallpapers/arch.png
+
+# Start dunst (Notifications)
+exec dunst
