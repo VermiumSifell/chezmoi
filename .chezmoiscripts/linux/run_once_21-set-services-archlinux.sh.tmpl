@@ -20,8 +20,8 @@ echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
 
 echo "enabling pipewire"
 {{-   if ne .chezmoi.username "root" }}
-systemctl enable --user --now pipewire.socket
-systemctl enable --user --now pipewire-pulse.socket
+sudo systemctl enable --user --now pipewire.socket
+sudo systemctl enable --user --now pipewire-pulse.socket
 {{-   else }}
 systemctl enable --user --now pipewire.socket
 systemctl enable --user --now pipewire-pulse.socket
