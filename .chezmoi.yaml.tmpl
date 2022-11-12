@@ -8,6 +8,8 @@
 {{- $swaywm := false -}}{{/* true if this machine is using swaywm */}}
 {{- $hyprlandwm := false -}}{{/* true if this machine is using hyprlandwm */}}
 {{- $agekey := false -}}{{/* true if this machine has agekey to decrypt secret */}}
+{{- $emacs := false -}}{{/* true if this machine should have emacs installed */}}
+
 
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq $hostname "AxelLaptop01-archlinux" -}}
@@ -17,6 +19,7 @@
 {{-   $swaywm = false -}}
 {{-   $hyprlandwm = false -}}
 {{-   $agekey = false -}}
+{{-   $emacs = true -}}
 {{- end -}}
 {{- if eq $hostname "AxelLaptop02-archlinux" -}}
 {{-   $headless = false -}}
@@ -25,6 +28,7 @@
 {{-   $swaywm = false -}}
 {{-   $hyprlandwm = false -}}
 {{-   $agekey = false -}}
+{{-   $emacs = true -}}
 {{- end -}}
 {{- if hasKey . "headless" -}}
 {{-   $headless = .headless -}}
@@ -41,6 +45,12 @@
 {{- else if $interactive -}}
 {{-   $agekey = promptBool "agekey" -}}
 {{- end -}}
+{{- if hasKey . "emacs" -}}
+{{-   $emacs = .emacs -}}
+{{- else if $interactive -}}
+{{-   $emacs = promptBool "emacs" -}}
+{{- end -}}
+
 
 {{- if $interactive -}}
 {{-   writeToStdout "💡 Tip: you can re-enter your data with `chezmoi init --data=false`.\n" -}}
@@ -53,13 +63,14 @@ data:
   swaywm: {{ $swaywm }}
   hyprlandwm: {{ $hyprlandwm }}
   agekey: {{ $agekey }}
+  emacs: {{ $emacs }}
 format: yaml
-encryption: age
-{{- if $agekey }}
-age:
-  identity: /home/budiman/.config/sops/age/keys.txt
-  recipient: age1zeqkpfz7e3s207ynea0z0auc0mrct0pc7w4sh6j3d0c4qac3dahqj9ufdg
-{{- end }}
+#encryption: age
+#{{- if $agekey }}
+#age:
+#  identity: /home/budiman/.config/sops/age/keys.txt
+#  recipient: age1zeqkpfz7e3s207ynea0z0auc0mrct0pc7w4sh6j3d0c4qac3dahqj9ufdg
+#{{- end }}
 merge:
   command: nvim
   args:
