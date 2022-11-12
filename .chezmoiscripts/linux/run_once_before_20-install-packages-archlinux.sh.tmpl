@@ -32,7 +32,7 @@ packages=(
 )
 
 aur_packages=(
-  # Fonts
+  ## Fonts
   ttf-symbola
   otf-openmoji
   ttf-twemoji
@@ -71,14 +71,14 @@ packages+=(
 
 {{   if .emacs -}}
 packages+=(
-#  emacs
+  emacs
   meson
 )
-
-aur_packages+=(
-  mu
-)
 {{   end -}}
+
+#aur_packages+=(
+#  mu
+#)
 
 echo "updating packages"
 {{   if ne .chezmoi.username "root" -}}
