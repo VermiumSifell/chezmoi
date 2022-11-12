@@ -5,6 +5,7 @@ set -eufo pipefail
 
 echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
 
+
 {{   if .lightdm -}}
   echo "enabling lightdm"
 
@@ -15,6 +16,17 @@ echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
 {{-   end }}
 
 {{   end -}}
+
+
+echo "enabling pipewire"
+{{-   if ne .chezmoi.username "root" }}
+systemctl enable --user --now pipewire.socket
+systemctl enable --user --now pipewire-pulse.socket
+{{-   else }}
+systemctl enable --user --now pipewire.socket
+systemctl enable --user --now pipewire-pulse.socket
+{{-   end }}
+
 
 echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
 {{ end -}}
