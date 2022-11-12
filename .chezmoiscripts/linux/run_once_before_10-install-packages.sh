@@ -54,12 +54,12 @@
 
 #{{   end -}}
 
-echo "updating packages"
-{{   if ne .chezmoi.username "root" -}}
-sudo pacman -Syu --noconfirm
-{{   else -}}
-pacman -Syu --noconfirm
-{{   end -}}
+#echo "updating packages"
+#{{   if ne .chezmoi.username "root" -}}
+#sudo pacman -Syu --noconfirm
+#{{   else -}}
+#pacman -Syu --noconfirm
+#{{   end -}}
 
 #for package in ${packages[@]}; do
 #  if [ "$(pacman -Qq $package 2> /dev/null)" != $package ]; then
@@ -95,4 +95,4 @@ pacman -Syu --noconfirm
 #done
 
 #echo -e "\033[0;32m>>>>> Finish Setting Up Arch Linux Packages <<<<<\033[0m"
-{{ end -}}
+#{{ end -}}
