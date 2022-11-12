@@ -23,11 +23,11 @@ aur_packages=(
   ttf-twemoji
 )
 
-{{   if (not .headless) -}}
-packages+=(
-  wezterm
-)
-{{   end -}}
+#{{   if (not .headless) -}}
+#packages+=(
+#  wezterm
+#)
+#{{   end -}}
 
 {{   if .i3wm -}}
 packages+=(
@@ -38,21 +38,21 @@ packages+=(
 )
 {{   end -}}
 
-{{   if .swaywm -}}
-packages+=(
-  sway
-  swayidle
-  waybar
-  dunst
-  python-i3ipc
-)
+#{{   if .swaywm -}}
+#packages+=(
+#  sway
+#  swayidle
+#  waybar
+#  dunst
+#  python-i3ipc
+#)
 
-aur_packages+=(
-  nwg-dock
-  rofi-lbonn-wayland-git
-)
+#aur_packages+=(
+#  nwg-dock
+#  rofi-lbonn-wayland-git
+#)
 
-{{   end -}}
+#{{   end -}}
 
 echo "updating packages"
 {{   if ne .chezmoi.username "root" -}}
