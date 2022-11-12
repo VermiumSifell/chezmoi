@@ -23,8 +23,8 @@ echo "enabling pipewire"
 sudo systemctl enable --user --now pipewire.socket
 sudo systemctl enable --user --now pipewire-pulse.socket
 {{-   else }}
-systemctl enable --user --now pipewire.socket
-systemctl enable --user --now pipewire-pulse.socket
+systemctl enable --force --user --now pipewire.socket
+systemctl enable --force --user --now pipewire-pulse.socket
 {{-   end }}
 
 
