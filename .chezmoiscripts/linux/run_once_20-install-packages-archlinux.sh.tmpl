@@ -6,119 +6,128 @@ set -eufo pipefail
 echo -e "\033[0;32m>>>>> Begin Setting Up Arch Linux Packages <<<<<\033[0m"
 
 packages=(
-  curl
-  git
-  npm
-  unzip
-  nodejs
-  npm
-  ## Browsers
-  firefox
-  ## Communication
-  discord
-  signal-desktop
-  ## Shells
-  zsh
-  ## Fonts
-  ttf-font-awesome
-  ttf-fira-code
-  noto-fonts-emoji
-  ttf-joypixels
-  ttf-liberation
-  ## Audio
-  pipewire
-  wireplumber
-  pipewire-pulse
-  ## Editors
-  nano
-  vim
-  code
-  neovim
+	curl			## Download Utility
+	git			## Version Control System
+	unzip			## Archive & Compress
+	nodejs			## JavaScript Runtime
+	npm			## Node.js Package Manager
+	firefox			## Browsers
+	discord			## Communication
+	signal-desktop		## Communication
+	spotify-launcher	## Music Player
+	zsh			## Shell
+	ttf-font-awesome	## Font
+	ttf-fira-code		## Font
+	noto-fonts-emoji	## Font
+	ttf-joypixels		## Font
+	ttf-liberation		## Font
+	pipewire		## Audio Server
+	wireplumber		## Session Manager
+	pipewire-pulse		## PulseAudio Client
+	nano			## File Editor
+	vim			## File Editor
+	code			## File Editor
+	neovim			## File Editor
 )
 
 aur_packages=(
-  ## Fonts
-  ttf-symbola
-  otf-openmoji
-  ttf-twemoji
+	ttf-symbola	## Font
+	otf-openmoji	## Font
+	ttf-twemoji	## Font
 )
+
 
 {{   if (not .headless) -}}
+
 packages+=(
-  alacritty
+	alacritty	## Terminal Emulator
 )
+
 {{   end -}}
 
-{{   if .i3wm -}}
+
+{{	if .i3wm	-}}
+
 packages+=(
-  i3-gaps
-  polybar
-  rofi
-  dunst
-  brightnessctl
-  playerctl
-  feh
-  slock
+	i3-gaps		## Window Manager
+	polybar		## Status Bar
+	rofi		## Application Launcher
+	dunst		## Desktop Notification
+	brightnessctl	## Brightness Control
+	playerctl	## Media Player Control
+	feh		## Image Viewer for Background
+	slock		## Screen Locker
 )
+
 {{   end -}}
+
 
 {{   if .emacs -}}
+
 packages+=(
-  emacs
-  meson
+	emacs
+	meson
 )
 
 aur_packages+=(
-  mu
+	mu
 )
+
 {{   end -}}
 
+
 {{   if .lightdm -}}
+
 packages+=(
-  lightdm
-  lightdm-gtk-greeter
+	lightdm			## Display Manager
+	lightdm-gtk-greeter	## LightDM Greeter
 )
+
 {{   end -}}
+
 
 echo "updating packages"
 {{   if ne .chezmoi.username "root" -}}
-sudo pacman -Syu --noconfirm
+	sudo pacman -Syu --noconfirm
 {{   else -}}
-pacman -Syu --noconfirm
+	pacman -Syu --noconfirm
 {{   end -}}
 
 for package in ${packages[@]}; do
-  if [ "$(pacman -Qq $package 2> /dev/null)" != $package ]; then
-    echo "installing $package"
-{{-   if ne .chezmoi.username "root" }}
-    sudo pacman -S --noconfirm $package
-{{-   else }}
-    pacman -S --noconfirm $package
-{{-   end }}
-  fi
+	if [ "$(pacman -Qq $package 2> /dev/null)" != $package ]; then
+	echo "installing $package"
+		{{-   if ne .chezmoi.username "root" }}
+			sudo pacman -S --noconfirm $package
+		{{-   else }}
+			pacman -S --noconfirm $package
+		{{-   end }}
+	fi
 done
+
 
 ## Install paru
 if [ ! $(command -v paru) ]; then
-  echo "installing paru"
-{{-   if ne .chezmoi.username "root" }}
-  sudo pacman -S --needed --noconfirm git base-devel
-{{-   else}}
-  pacman -S --needed --noconfirm git base-devel
-{{-   end }}
-  git clone https://aur.archlinux.org/paru.git /tmp/paru
-  cd /tmp/paru
-  makepkg -si --noconfirm
-  cd -
-  rm -rf /tmp/paru
+	echo "installing paru"
+	{{-   if ne .chezmoi.username "root" }}
+		sudo pacman -S --needed --noconfirm git base-devel
+	{{-   else}}
+		pacman -S --needed --noconfirm git base-devel
+	{{-   end }}
+		git clone https://aur.archlinux.org/paru.git /tmp/paru
+		cd /tmp/paru
+		makepkg -si --noconfirm
+		cd -
+		rm -rf /tmp/paru
 fi
 
 for aur_package in ${aur_packages[@]}; do
-  if [ $(pacman -Qq $aur_package 2> /dev/null) != $aur_package ]; then
-    echo "installing $aur_package from AUR"
-    paru -S --noconfirm $aur_package
-  fi
+	if [ $(pacman -Qq $aur_package 2> /dev/null) != $aur_package ]; then
+	echo "installing $aur_package from AUR"
+	paru -S --noconfirm $aur_package
+	fi
 done
 
+
 echo -e "\033[0;32m>>>>> Finish Setting Up Arch Linux Packages <<<<<\033[0m"
+
 {{ end -}}
