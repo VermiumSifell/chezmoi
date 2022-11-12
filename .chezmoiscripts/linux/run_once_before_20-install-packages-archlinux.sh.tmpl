@@ -10,17 +10,29 @@ packages=(
   git
   npm
   unzip
+  nodejs
+  npm
+  ## Shells
   zsh
-  # Fonts
+  ## Fonts
   ttf-font-awesome
   ttf-fira-code
   noto-fonts-emoji
   ttf-joypixels
   ttf-liberation
-
+  ## Audio
+  pipewire
+  wireplumber
+  pipewire-pulse
+  ## Editors
+  nano
+  vim
+  code
+  neovim
 )
 
 aur_packages=(
+  # Fonts
   ttf-symbola
   otf-openmoji
   ttf-twemoji
@@ -56,6 +68,17 @@ packages+=(
 #)
 
 #{{   end -}}
+
+{{ if .emacs -}}
+packages+=(
+  emacs
+  meson
+)
+
+aur_packages+=(
+  mu
+)
+{{ end -}}
 
 echo "updating packages"
 {{   if ne .chezmoi.username "root" -}}
