@@ -50,7 +50,7 @@ module-margin = 1
 separator = |
 separator-foreground = ${colors.disabled}
 
-{{ if not .chezmoi.hostname "AxelLaptop02-archlinux" }}
+{{ if (not .chezmoi.hostname "AxelLaptop02-archlinux") }}
 tray-position = right
 tray-padding = 2
 tray-maxsize = 28
