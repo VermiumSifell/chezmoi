@@ -1,4 +1,4 @@
-{{ if (eq .chezmoi.osRelease.id "arch") -}}
+#{{ if (eq .chezmoi.osRelease.id "arch") -}}
 #!/bin/bash
 
 #set -eufo pipefail
