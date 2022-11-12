@@ -71,14 +71,12 @@ packages+=(
 
 {{   if .emacs -}}
 packages+=(
-  emacs
-  meson
+  i3-gaps
+  polybar
+  rofi
+  dunst
 )
 {{   end -}}
-
-#aur_packages+=(
-#  mu
-#)
 
 echo "updating packages"
 {{   if ne .chezmoi.username "root" -}}
