@@ -1,4 +1,4 @@
 [user]
-	email = {{ .chezmoi.group }}@zyner.org
-	name = Vermium Sifell
-	signingkey = 9FAF48BFC186B932
+    email = {{ .email | quote }}
+    name = {{ .name | quote }}
+    signingkey = 9FAF48BFC186B932
