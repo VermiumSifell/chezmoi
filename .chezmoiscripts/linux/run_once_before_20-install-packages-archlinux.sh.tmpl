@@ -1,9 +1,9 @@
-#{{ if (eq .chezmoi.osRelease.id "arch") -}}
+{{ if (eq .chezmoi.osRelease.id "arch") -}}
 #!/bin/bash
 
-#set -eufo pipefail
+set -eufo pipefail
 
-#echo -e "\033[0;32m>>>>> Begin Setting Up Arch Linux Packages <<<<<\033[0m"
+echo -e "\033[0;32m>>>>> Begin Setting Up Arch Linux Packages <<<<<\033[0m"
 
 #packages=(
 #  curl
@@ -95,4 +95,4 @@
 #done
 
 #echo -e "\033[0;32m>>>>> Finish Setting Up Arch Linux Packages <<<<<\033[0m"
-#{{ end -}}
+{{ end -}}
