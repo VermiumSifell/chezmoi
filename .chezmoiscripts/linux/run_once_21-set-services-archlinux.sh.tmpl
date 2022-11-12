@@ -19,8 +19,8 @@ echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
 
 
 echo "enabling pipewire"
-systemctl enable --user --now pipewire.socket
-systemctl enable --user --now pipewire-pulse.socket
+systemctl enable --user pipewire.socket
+systemctl enable --user pipewire-pulse.socket
 
 
 echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
