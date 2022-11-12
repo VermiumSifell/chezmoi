@@ -9,6 +9,7 @@
 {{- $hyprlandwm := false -}}{{/* true if this machine is using hyprlandwm */}}
 {{- $agekey := false -}}{{/* true if this machine has agekey to decrypt secret */}}
 {{- $emacs := false -}}{{/* true if this machine should have emacs installed */}}
+{{- $lightdm := false -}}{{/* true if this machine should have lightdm installed */}}
 
 
 {{- $hostname := .chezmoi.hostname -}}
@@ -50,6 +51,11 @@
 {{- else if $interactive -}}
 {{-   $emacs = promptBool "emacs" -}}
 {{- end -}}
+{{- if hasKey . "lightdm" -}}
+{{-   $lightdm = .lightdm -}}
+{{- else if $interactive -}}
+{{-   $lightdm = promptBool "lightdm" -}}
+{{- end -}}
 
 
 {{- if $interactive -}}
@@ -64,6 +70,7 @@ data:
   hyprlandwm: {{ $hyprlandwm }}
   agekey: {{ $agekey }}
   emacs: {{ $emacs }}
+  lightdm: {{ $lightdm }}
 format: yaml
 #encryption: age
 #{{- if $agekey }}

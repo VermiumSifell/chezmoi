@@ -1,0 +1,13 @@
+{{ if (eq .chezmoi.osRelease.id "arch") -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
+
+{{   if .lightdm -}}
+systemctl enable --force lightdm.service
+{{   end -}}
+
+echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
+{{ end -}}

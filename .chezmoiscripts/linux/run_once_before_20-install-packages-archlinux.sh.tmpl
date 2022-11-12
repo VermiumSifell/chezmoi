@@ -12,6 +12,11 @@ packages=(
   unzip
   nodejs
   npm
+  ## Browsers
+  firefox
+  ## Communication
+  discord
+  signal-desktop
   ## Shells
   zsh
   ## Fonts
@@ -50,6 +55,10 @@ packages+=(
   polybar
   rofi
   dunst
+  brightnessctl
+  playerctl
+  feh
+  slock
 )
 {{   end -}}
 
@@ -61,6 +70,12 @@ packages+=(
 
 aur_packages+=(
   mu
+)
+{{   end -}}
+
+{{   if .lightdm -}}
+packages+=(
+  lightdm lightdm-gtk-greeter
 )
 {{   end -}}
 
