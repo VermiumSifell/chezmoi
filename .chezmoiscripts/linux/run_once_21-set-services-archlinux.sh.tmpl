@@ -1,13 +1,19 @@
 {{ if (eq .chezmoi.osRelease.id "arch") -}}
 #!/bin/bash
 
-#set -eufo pipefail
+set -eufo pipefail
 
 echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
 
-#{{   if .lightdm -}}
-#  sudo systemctl enable --force lightdm.service
-#{{   end -}}
+{{   if .lightdm -}}
+
+{{-   if ne .chezmoi.username "root" }}
+  sudo systemctl enable --force lightdm.service
+{{-   else }}
+  systemctl enable --force lightdm.service
+{{-   end }}
+
+{{   end -}}
 
 echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
 {{ end -}}
