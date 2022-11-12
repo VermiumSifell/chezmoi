@@ -15,6 +15,7 @@ packages=(
   noto-fonts-emoji
   ttf-joypixels
   ttf-liberation
+  zsh
 )
 
 aur_packages=(
@@ -23,20 +24,20 @@ aur_packages=(
   ttf-twemoji
 )
 
-#{{   if (not .headless) -}}
-#packages+=(
-#  wezterm
-#)
-#{{   end -}}
+{{   if (not .headless) -}}
+packages+=(
+  alacritty
+)
+{{   end -}}
 
-#{{   if .i3wm -}}
-#packages+=(
-#  i3-gaps
-#  polybar
-#  rofi
-#  dunst
-#)
-#{{   end -}}
+{{   if .i3wm -}}
+packages+=(
+  i3-gaps
+  polybar
+  rofi
+  dunst
+)
+{{   end -}}
 
 #{{   if .swaywm -}}
 #packages+=(
