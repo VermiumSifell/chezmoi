@@ -69,7 +69,7 @@ packages+=(
 
 #{{   end -}}
 
-{{ if .emacs -}}
+{{   if .emacs -}}
 packages+=(
   emacs
   meson
@@ -78,7 +78,7 @@ packages+=(
 aur_packages+=(
   mu
 )
-{{ end -}}
+{{   end -}}
 
 echo "updating packages"
 {{   if ne .chezmoi.username "root" -}}
