@@ -61,7 +61,8 @@ font-3 = FontAwesome6Brands:style=Regular:size=10;2
 
 {{ if eq .chezmoi.hostname "AxelLaptop02-archlinux" }}
 modules-left = xworkspaces xwindow
-modules-right = pulseaudio battery date
+modules-center = date
+modules-right = pulseaudio battery
 {{ else }}
 modules-left = xworkspaces xwindow
 modules-right = filesystem pulseaudio memory cpu wlan eth battery date
