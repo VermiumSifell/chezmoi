@@ -1,27 +1,27 @@
 {{ if (eq .chezmoi.osRelease.id "arch") -}}
 #!/bin/bash
 
-set -eufo pipefail
+#set -eufo pipefail
 
-echo -e "\033[0;32m>>>>> Begin Setting Up Arch Linux Packages <<<<<\033[0m"
+#echo -e "\033[0;32m>>>>> Begin Setting Up Arch Linux Packages <<<<<\033[0m"
 
-packages=(
-  curl
-  git
-  npm
-  unzip
-  ttf-font-awesome
-  ttf-fira-code
-  noto-fonts-emoji
-  ttf-joypixels
-  ttf-liberation
-)
+#packages=(
+#  curl
+#  git
+#  npm
+#  unzip
+#  ttf-font-awesome
+#  ttf-fira-code
+#  noto-fonts-emoji
+#  ttf-joypixels
+#  ttf-liberation
+#)
 
-aur_packages=(
-  ttf-symbola
-  otf-openmoji
-  ttf-twemoji
-)
+#aur_packages=(
+#  ttf-symbola
+#  otf-openmoji
+#  ttf-twemoji
+#)
 
 #{{   if (not .headless) -}}
 #packages+=(
