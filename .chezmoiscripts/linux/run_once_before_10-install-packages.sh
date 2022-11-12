@@ -94,5 +94,5 @@ pacman -Syu --noconfirm
 #  fi
 #done
 
-echo -e "\033[0;32m>>>>> Finish Setting Up Arch Linux Packages <<<<<\033[0m"
-#{{ end -}}
+#echo -e "\033[0;32m>>>>> Finish Setting Up Arch Linux Packages <<<<<\033[0m"
+{{ end -}}
