@@ -2,10 +2,10 @@
 type = internal/pulseaudio
 
 format-volume-prefix = " "
-format-volume-prefix-foreground = ${colors.primary}
+format-volume-prefix-foreground = {{ .colors.comment }}
 format-volume = <label-volume>
 
 label-volume = %percentage%%
 
 label-muted = " muted"
-label-muted-foreground = ${colors.disabled}
+label-muted-foreground = {{ .colors.current_line }}

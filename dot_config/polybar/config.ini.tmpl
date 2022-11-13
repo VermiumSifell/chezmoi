@@ -17,13 +17,13 @@
 ;==========================================================
 
 [colors]
-background = #282a36
-background-alt = #373B41
-foreground = #f8f8f2
-primary = #F0C674
-secondary = #8ABEB7
-alert = #A54242
-disabled = #707880
+background = {{ .colors.background }}
+foreground = {{ .colors.foreground }}
+#background-alt = #373B41
+#primary = #F0C674
+#secondary = #8ABEB7
+#alert = #A54242
+#disabled = #707880
 
 ; Import modules
 include-directory = modules
@@ -38,8 +38,8 @@ monitor = ${env:MONITOR:}
 
 ; dpi = 96
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = {{ .colors.background }}
+foreground = {{ .colors.foreground }}
 
 line-size = 3pt
 
@@ -52,7 +52,7 @@ padding-right = 1
 module-margin = 1
 
 separator = |
-separator-foreground = ${colors.disabled}
+separator-foreground = {{ .colors.current_line }}
 
 {{ if not (eq .chezmoi.hostname "AxelLaptop02-archlinux") }}
 tray-position = right

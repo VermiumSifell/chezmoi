@@ -7,4 +7,4 @@ date-alt = %Y-%m-%d %H:%M:%S
 
 format-prefix = " "
 label = %date%
-label-foreground = ${colors.primary}
+label-foreground = {{ .colors.comment }}
