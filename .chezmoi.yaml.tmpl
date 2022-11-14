@@ -105,12 +105,12 @@ data:
 
 format: yaml
 
-{{ if .agekey }}
+{{- if $agekey }}
 encryption: "age"
 age:
   identity: "~/key.txt"
   recipient: "age15trqys2numa5c7ldrgsms5tkhqkn5wyq09nh0er5euaa28hel55qjtrqul"
-{{ end }}
+{{- end }}
 
 merge:
   command: nvim
