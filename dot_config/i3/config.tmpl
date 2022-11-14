@@ -40,7 +40,7 @@ bindsym XF86AudioPrev exec playerctl previous
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $TERMINAL
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -174,9 +174,6 @@ bindsym $mod+p move workspace to output right
 
 # Lock screen
 bindsym --release $mod+Shift+s exec "slock"
-
-# Set keyboard layout to Swedish
-exec setxkbmap se
 
 # Start external monitor
 exec_always --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP-1

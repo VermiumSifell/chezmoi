@@ -1,4 +1,4 @@
-killall polybar
+pkill -9 polybar
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
