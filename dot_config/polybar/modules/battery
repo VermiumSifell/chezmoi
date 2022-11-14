@@ -42,7 +42,7 @@ format-charging = <animation-charging> <label-charging>
 ;   <bar-capacity>
 ;   <ramp-capacity>
 ;   <animation-discharging>
-format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging = <ramp-capacity> <label-discharging>
 
 ; Available tags:
 ;   <label-full> (default)
@@ -72,7 +72,7 @@ label-charging = Charging %percentage%%
 ;   %percentage_raw%
 ;   %time%
 ;   %consumption% (shows current discharge rate in watts)
-label-discharging = Discharging %percentage%%
+;label-discharging = Discharging %percentage%%
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
@@ -120,3 +120,12 @@ animation-discharging-framerate = 500
 animation-low-0 = !
 animation-low-1 = 
 animation-low-framerate = 200
+
+label = %percentage%%
+
+; Discharging
+label-discharging = ${self.label}
+label-discharging-background = {{ .colors.background }}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = {{ .colors.background }}

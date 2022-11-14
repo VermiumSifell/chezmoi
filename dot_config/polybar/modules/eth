@@ -1,4 +1,8 @@
 [module/eth]
 inherit = network-base
 interface-type = wired
-label-connected = %{F#F0C674}%ifname%%{F-} %local_ip%
+
+format-connected-prefix = " "
+label-connected = %local_ip%
+
+format-disconnected =
