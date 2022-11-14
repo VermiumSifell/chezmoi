@@ -7,7 +7,6 @@
 {{- $i3wm := false -}}{{/* true if this machine is using i3wm */}}
 {{- $swaywm := false -}}{{/* true if this machine is using swaywm */}}
 {{- $hyprlandwm := false -}}{{/* true if this machine is using hyprlandwm */}}
-{{- $agekey := false -}}{{/* true if this machine has agekey to decrypt secret */}}
 {{- $emacs := false -}}{{/* true if this machine should have emacs installed */}}
 {{- $lightdm := false -}}{{/* true if this machine should have lightdm installed */}}
 
@@ -19,7 +18,6 @@
 {{-   $i3wm = true -}}
 {{-   $swaywm = false -}}
 {{-   $hyprlandwm = false -}}
-{{-   $agekey = false -}}
 {{-   $emacs = true -}}
 {{- end -}}
 {{- if eq $hostname "AxelLaptop02-archlinux" -}}
@@ -28,7 +26,6 @@
 {{-   $i3wm = true -}}
 {{-   $swaywm = false -}}
 {{-   $hyprlandwm = false -}}
-{{-   $agekey = false -}}
 {{-   $emacs = true -}}
 {{- end -}}
 {{- if hasKey . "headless" -}}
@@ -40,11 +37,6 @@
 {{-   $kubernetes = .kubernetes -}}
 {{- else if $interactive -}}
 {{-   $kubernetes = promptBool "kubernetes" -}}
-{{- end -}}
-{{- if hasKey . "agekey" -}}
-{{-   $agekey = .agekey -}}
-{{- else if $interactive -}}
-{{-   $agekey = promptBool "agekey" -}}
 {{- end -}}
 {{- if hasKey . "emacs" -}}
 {{-   $emacs = .emacs -}}
@@ -68,7 +60,6 @@ data:
   i3wm: {{ $i3wm }}
   swaywm: {{ $swaywm }}
   hyprlandwm: {{ $hyprlandwm }}
-  agekey: {{ $agekey }}
   emacs: {{ $emacs }}
   lightdm: {{ $lightdm }}
   colors:
@@ -105,12 +96,10 @@ data:
 
 format: yaml
 
-{{- if $agekey }}
 encryption: "age"
 age:
   identity: "~/key.txt"
   recipient: "age15trqys2numa5c7ldrgsms5tkhqkn5wyq09nh0er5euaa28hel55qjtrqul"
-{{- end }}
 
 merge:
   command: nvim
