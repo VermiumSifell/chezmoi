@@ -104,10 +104,14 @@ data:
     main: "Fira Code"
 
 format: yaml
+
+{{ if .agekey }}
 encryption: "age"
 age:
   identity: "~/key.txt"
   recipient: "age15trqys2numa5c7ldrgsms5tkhqkn5wyq09nh0er5euaa28hel55qjtrqul"
+{{ end }}
+
 merge:
   command: nvim
   args:
