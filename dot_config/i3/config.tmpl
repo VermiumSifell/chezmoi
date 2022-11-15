@@ -48,6 +48,9 @@ bindsym $mod+Shift+q kill
 # Start rofi
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
 
+# Open clipmenu
+bindsym $mod+c exec "CM_LAUNCHER=rofi clipmenu"
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -192,3 +195,6 @@ exec --no-startup-id feh --bg-scale ~/wallpapers/arch.png
 
 # Start dunst (Notifications)
 exec --no-startup-id dunst
+
+# Start clipmenu
+exec --no-startup-id clipmenud
