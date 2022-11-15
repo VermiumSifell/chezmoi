@@ -9,6 +9,12 @@
   (add-to-list 'exec-path "/home/vermium/.cargo/bin")
 #+end_src
 
+* Stop creating #autosave# and backup~ files
+#+begin_src emacs-lisp
+(setq auto-save-default nil) ; stop creating #autosave# files
+(setq make-backup-files nil) ; stop creating backup~ files
+#+end_src
+
 * Basic UI Configuration
 #+begin_src emacs-lisp
 

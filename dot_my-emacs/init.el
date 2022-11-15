@@ -3,6 +3,9 @@
 (add-to-list 'exec-path "/usr/bin/") 
 (add-to-list 'exec-path "/home/vermium/.cargo/bin")
 
+(setq auto-save-default nil) ; stop creating #autosave# files
+(setq make-backup-files nil) ; stop creating backup~ files
+
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
 (tool-bar-mode -1)          ; Disable the toolbar
@@ -73,7 +76,7 @@
 ;; A log for the commands i run.
 (use-package command-log-mode)
 
-(defun keo/minibuffer-backward-kill (arg)
+(defun vs/minibuffer-backward-kill (arg)
   (interactive "p")
   (cond
    ;; When minibuffer has ~/
@@ -100,7 +103,7 @@
               ("C-f" . vertico-exit)
               :map minibuffer-local-map
               ("M-h" . backward-kill-word)
-              ("" . keo/minibuffer-backward-kill))
+              ("" . vs/minibuffer-backward-kill))
   :custom
   (vertico-cycle t)
   :init
@@ -343,11 +346,11 @@
 
 (use-package general
   :config
-  (general-create-definer keo/exwm-keyboard
+  (general-create-definer vs/exwm-keyboard
     :keymaps '(normal insert visual emacs)
     :prefix "s"
     :global-prefix "s")
-  (general-create-definer keo/leader-keys
+  (general-create-definer vs/leader-keys
     :keymaps '(normal insert visual emacs)
     :prefix "SPC"
     :global-prefix "C-SPC"))
@@ -579,6 +582,13 @@
    ("C-c C->" . mc/mark-all-like-this)
    ("C-c C-SPC" . mc/edit-lines)
    ))
+
+(use-package chezmoi
+  :bind
+  ("C-c C f" . chezmoi-find)
+  ("C-c C s" . chezmoi-write)
+  :hook
+  (org-babel-post-tangle . chezmoi-write))
 
 (electric-pair-mode 1)
 
@@ -849,16 +859,16 @@
 
 (use-package forge)
 
-(defun keo/display-startup-time ()
+(defun vs/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
            (format "%.2f seconds"
                    (float-time
                      (time-subtract after-init-time before-init-time)))
            gcs-done))
 
-(add-hook 'emacs-startup-hook #'keo/display-startup-time)
+(add-hook 'emacs-startup-hook #'vs/display-startup-time)
 
-(defun keo/lookup-password (&rest keys)
+(defun vs/lookup-password (&rest keys)
   (let ((result (apply #'auth-source-search keys)))
     (if result
         (funcall (plist-get (car result) :secret))
@@ -872,25 +882,25 @@
 
 
 
-(defun keo/run-program (command)
+(defun vs/run-program (command)
   (let ((command-parts (split-string command "[ ]+")))
     (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
 
-(defun keo/list-complete-run-program (programs)
-    (keo/run-program
+(defun vs/list-complete-run-program (programs)
+    (vs/run-program
      (completing-read
       "Choose a program to run: "
       programs
       nil
       t)))
 
-(defun keo/list-complete-run-program-all-programs ()
+(defun vs/list-complete-run-program-all-programs ()
   (interactive)
-  (keo/list-complete-run-program (list-directory "/usr/bin")))
+  (vs/list-complete-run-program (list-directory "/usr/bin")))
 
 (straight-use-package 'org)
 
-(defun keo/org-font-setup ()
+(defun vs/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
@@ -916,13 +926,13 @@
   (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
 
-(defun keo/org-mode-setup ()
+(defun vs/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
   (visual-line-mode 1))
 
 (use-package org
-  :hook (org-mode . keo/org-mode-setup)
+  :hook (org-mode . vs/org-mode-setup)
   :config
   (setq org-ellipsis " ▾")
 
@@ -1042,7 +1052,7 @@
         (define-key global-map (kbd "C-c j")
           (lambda () (interactive) (org-capture nil "jj")))
 
-        (keo/org-font-setup))
+        (vs/org-font-setup))
 
   (use-package org-bullets
     :after org
@@ -1050,13 +1060,13 @@
     :custom
     (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-  (defun keo/org-mode-visual-fill ()
+  (defun vs/org-mode-visual-fill ()
     (setq visual-fill-column-width 100
           visual-fill-column-center-text t)
     (visual-fill-column-mode 1))
 
   (use-package visual-fill-column
-    :hook (org-mode . keo/org-mode-visual-fill))
+    :hook (org-mode . vs/org-mode-visual-fill))
 
   (setq org-startup-folded t)
 
@@ -1066,14 +1076,14 @@
    (python . t)))
 
 ;; Automatically tangle our Emacs.org config file when we save it
-(defun keo/org-babel-tangle-config ()
+(defun vs/org-babel-tangle-config ()
   (when (string-equal (file-name-directory (buffer-file-name))
                       (expand-file-name "~/.my-emacs/"))
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
 
-(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'keo/org-babel-tangle-config)))
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'vs/org-babel-tangle-config)))
 
 (use-package org-roam
   :custom
@@ -1134,12 +1144,12 @@
     (server-start)))
 
 (use-package counsel-spotify)
-(setq counsel-spotify-client-id (keo/lookup-password :host "spotify-emacs-id"))
-(setq counsel-spotify-client-secret (keo/lookup-password :host "spotify-emacs-secret"))
+(setq counsel-spotify-client-id (vs/lookup-password :host "spotify-emacs-id"))
+(setq counsel-spotify-client-secret (vs/lookup-password :host "spotify-emacs-secret"))
 
 (tab-bar-mode)
 
-(defun keo/configure-eshell ()
+(defun vs/configure-eshell ()
   ;; Save command history when commands are entered
   (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
 
@@ -1159,7 +1169,7 @@
 (use-package exec-path-from-shell)
 
 (use-package eshell
-  :hook (eshell-first-time-mode . keo/configure-eshell)
+  :hook (eshell-first-time-mode . vs/configure-eshell)
   :config
 
   (with-eval-after-load 'esh-opt
@@ -1169,7 +1179,7 @@
 (use-package vterm
   :ensure t)
 
-(keo/leader-keys
+(vs/leader-keys
   "t"  '(:ignore t :which-key "Toggles")
   "tt" '(counsel-load-theme :which-key "Choose Theme")
   "o" '(:ignore t :which-key "Org")
