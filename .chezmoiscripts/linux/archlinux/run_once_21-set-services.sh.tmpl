@@ -22,6 +22,8 @@ echo "enabling pipewire"
 systemctl enable --user pipewire.socket
 systemctl enable --user pipewire-pulse.socket
 
+echo "enabling bluetooth"
+sudo systemctl enable bluetooth.service
 
 echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
 {{ end -}}
