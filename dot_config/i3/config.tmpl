@@ -46,13 +46,13 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Start rofi
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
+bindsym $mod+d exec --no-startup-id rofi -modi drun,run -show drun
 
 # Open clipmenu
-bindsym $mod+c exec "CM_LAUNCHER=rofi clipmenu"
+bindsym $mod+c exec --no-startup-id CM_LAUNCHER=rofi clipmenu
 
 # Open emoji selector
-bindsym $mod+x exec "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
+bindsym $mod+x exec --no-startup-id rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C
 
 # Open bluetooth
 bindsym $mod+b exec --no-startup-id rofi-bluetooth
