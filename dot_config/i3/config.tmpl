@@ -175,6 +175,9 @@ bindsym $mod+p move workspace to output right
 # Lock screen
 bindsym --release $mod+Shift+s exec "slock"
 
+# Set keyboard layout to Swedish
+exec --no-startup-id setxkbmap se
+
 # Start external monitor
 exec_always --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP-1
 
@@ -182,10 +185,10 @@ exec_always --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP-1
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Start picom compositor
-exec picom
+exec --no-startup-id picom
 
 # Set background
-exec feh --bg-scale ~/wallpapers/arch.png
+exec --no-startup-id feh --bg-scale ~/wallpapers/arch.png
 
 # Start dunst (Notifications)
-exec dunst
+exec --no-startup-id dunst
