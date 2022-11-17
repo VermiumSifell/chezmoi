@@ -25,5 +25,13 @@ systemctl enable --user pipewire-pulse.socket
 echo "enabling bluetooth"
 sudo systemctl enable bluetooth.service
 
+echo "enabling libvirt"
+sudo systemctl enable libvirtd.service
+grep -qxF "unix_sock_group = 'libvirt'" /etc/libvirt/libvirtd.conf || echo "unix_sock_group = 'libvirt'" | sudo tee -a /etc/libvirt/libvirtd.conf
+grep -qxF "unix_sock_rw_perms = '0770'" /etc/libvirt/libvirtd.conf || echo "unix_sock_rw_perms = '0770'" | sudo tee -a /etc/libvirt/libvirtd.conf
+{{- if ne .chezmoi.username "root" }}
+sudo usermod -aG libvirt {{ .chezmoi.username }}
+{{- end }}
+
 echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
 {{ end -}}
