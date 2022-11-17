@@ -190,8 +190,8 @@ bindsym --release $mod+Shift+s exec "slock"
 # Set keyboard layout to Swedish
 exec --no-startup-id setxkbmap se
 
-# Start external monitor
-exec_always --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP-1
+# Setup screens
+exec_always --no-startup-id autorandr --change
 
 # Restart polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh

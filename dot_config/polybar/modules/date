@@ -5,6 +5,6 @@ interval = 1
 date = %H:%M
 date-alt = %Y-%m-%d %H:%M:%S
 
-format-prefix = " "
+#format-prefix = " "
 label = %date%
 label-foreground = {{ .colors.comment }}

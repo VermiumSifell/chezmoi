@@ -35,10 +35,13 @@ line-size = 3pt
 ; border-size = 4pt
 ; border-color = #00000000
 
+; padding = 0
 padding-left = 0
 padding-right = 1
 
-module-margin = 1
+; module-margin = 1.5
+module-margin-left = 2
+module-margin-right = 2
 
 ; separator = |
 ; separator-foreground = {{ .colors.selection }}
@@ -49,13 +52,14 @@ tray-padding = 2
 tray-maxsize = 28
 {{ end }}
 
-font-0 = {{ .fonts.main }}:style=Regular;2
-font-1 = FontAwesome6Free:style=Solid:size=10;2
-font-2 = FontAwesome6Free:style=Regular:size=10;2
-font-3 = FontAwesome6Brands:style=Regular:size=10;2
+font-0 = {{ .fonts.main }}:size=11:style=bold;2
+
+font-1 = FontAwesome6Free:style=Solid:size=11;2
+font-2 = FontAwesome6Free:style=Regular:size=11;2
+font-3 = FontAwesome6Brands:style=Regular:size=11;2
 
 {{ if eq .chezmoi.hostname "AxelLaptop02-archlinux" }}
-modules-left = i3 #xwindow
+modules-left = i3
 modules-center = date
 modules-right = eth wlan pulseaudio battery
 {{ else if eq .chezmoi.hostname "AxelLaptop01-archlinux" }}

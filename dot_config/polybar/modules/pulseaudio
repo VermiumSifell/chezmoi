@@ -38,9 +38,9 @@ label-muted = muted
 label-muted-foreground = {{ .colors.foreground }}
 
 ; Only applies if <ramp-volume> is used
-ramp-volume-0 = 🔈
-ramp-volume-1 = 🔉
-ramp-volume-2 = 🔊
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 ; Right and Middle click
 click-right = pavucontrol
