@@ -33,5 +33,8 @@ grep -qxF "unix_sock_rw_perms = '0770'" /etc/libvirt/libvirtd.conf || echo "unix
 sudo usermod -aG libvirt {{ .chezmoi.username }}
 {{- end }}
 
+echo "enabling autorandr"
+sudo systemctl enable autorandr.service
+
 echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
 {{ end -}}
