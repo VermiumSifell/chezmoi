@@ -2,8 +2,8 @@
 
 # class                 border  bground text    indicator child_border
 client.focused          {{ .colors.nord10 }} {{ .colors.nord10 }} {{ .colors.nord4 }} {{ .colors.nord10 }} {{ .colors.nord10 }}
-client.focused_inactive {{ .colors.nord1 }} {{ .colors.nord1 }} {{ .colors.nord4 }} {{ .colors.nord1 }} {{ .colors.nord4 }}
-client.unfocused        {{ .colors.nord3 }} {{ .colors.nord3 }} {{ .colors.nord4 }} {{ .colors.nord3 }} {{ .colors.nord3 }}
+client.focused_inactive {{ .colors.nord3 }} {{ .colors.nord3 }} {{ .colors.nord4 }} {{ .colors.nord3 }} {{ .colors.nord3 }}
+client.unfocused        {{ .colors.nord1 }} {{ .colors.nord1 }} {{ .colors.nord4 }} {{ .colors.nord1 }} {{ .colors.nord1 }}
 client.urgent           {{ .colors.nord11 }} {{ .colors.nord11 }} {{ .colors.nord4 }} {{ .colors.nord11 }} {{ .colors.nord11 }}
 client.placeholder      {{ .colors.background }} {{ .colors.background }} {{ .colors.foreground }} {{ .colors.background }} {{ .colors.background }}
 
@@ -46,7 +46,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Start rofi
-bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
+bindsym $mod+d exec --no-startup-id "rofi -modi drun,run,window,ssh -show drun"
 
 # Open clipmenu
 bindsym $mod+c exec --no-startup-id "CM_LAUNCHER=rofi clipmenu"
@@ -187,6 +187,9 @@ bindsym $mod+p move workspace to output right
 # Lock screen
 bindsym --release $mod+Shift+s exec "slock"
 
+# Open screenshot tool
+bindsym Print exec "rofi-screenshot"
+
 # Set keyboard layout to Swedish
 exec --no-startup-id setxkbmap se
 
@@ -210,3 +213,4 @@ exec --no-startup-id clipmenud
 
 # Start emacs as a daemon
 exec --no-startup-id emacs --daemon
+
