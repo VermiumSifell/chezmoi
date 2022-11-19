@@ -84,23 +84,13 @@ label-mode-background = {{ .colors.red }}
 ;   %index%
 ;   %output%
 ; Default: %icon% %name%
-label-focused = %index% %icon%
-label-focused-foreground = {{ .colors.foreground }}
-label-focused-background = {{ .colors.background }}
-label-focused-underline = {{ .colors.comment }}
+label-focused = %{F{{.colors.nord14 }}}%icon%%{F-} %index%
+label-focused-foreground = {{ .colors.nord5 }}
+label-focused-background = {{ .colors.nord0 }}
+label-focused-underline = {{ .colors.nord10 }}
 label-focused-padding = 1
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon% %name%
-label-unfocused = %index% %icon%
-label-unfocused-foreground = {{ .colors.foreground }}
-label-unfocused-background = {{ .colors.background }}
-label-unfocused-underline = {{ .colors.current_line }}
-label-unfocused-padding = 1
+; 3
 
 ; Available tokens:
 ;   %name%
@@ -108,8 +98,22 @@ label-unfocused-padding = 1
 ;   %index%
 ;   %output%
 ; Default: %icon% %name%
-label-visible = %index% %icon%
-label-visible-underline = {{ .colors.current_line }}
+label-unfocused = %{F{{.colors.nord14 }}}%icon%%{F-} %index%
+label-unfocused-foreground = {{ .colors.nord4 }}
+label-unfocused-background = {{ .colors.nord0 }}
+label-unfocused-underline = {{ .colors.nord3 }}
+label-unfocused-padding = 1
+
+; 2
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon% %name%
+label-visible = %{F{{.colors.nord14 }}}%icon%%{F-} %index%
+label-visible-underline = {{ .colors.nord2 }}
 label-visible-padding = 1
 
 ; Available tokens:
@@ -118,7 +122,7 @@ label-visible-padding = 1
 ;   %index%
 ;   %output%
 ; Default: %icon% %name%
-label-urgent = %index% %icon%
+label-urgent = %{F{{.colors.nord14 }}}%icon%%{F-} %index%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
 label-urgent-padding = 1
@@ -126,4 +130,4 @@ label-urgent-padding = 1
 ; Separator in between workspaces
 ; label-separator = |
 ; label-separator-padding = 1
-; label-separator-foreground = {{ .colors.selection }}
+; label-separator-foreground = {{ .colors.nord3 }}

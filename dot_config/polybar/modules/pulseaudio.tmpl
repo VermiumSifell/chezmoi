@@ -17,7 +17,7 @@ interval = 5
 ;   <label-volume> (default)
 ;   <ramp-volume>
 ;   <bar-volume>
-format-volume = <ramp-volume> <label-volume>
+format-volume = %{F{{.colors.nord14 }}}<ramp-volume>%{F-} <label-volume>
 
 ; Available tags:
 ;   <label-muted> (default)
@@ -35,7 +35,7 @@ format-volume = <ramp-volume> <label-volume>
 ;   %decibels%
 format-muted-prefix = " "
 label-muted = muted
-label-muted-foreground = {{ .colors.foreground }}
+label-muted-foreground = {{ .colors.nord4 }}
 
 ; Only applies if <ramp-volume> is used
 ramp-volume-0 = 

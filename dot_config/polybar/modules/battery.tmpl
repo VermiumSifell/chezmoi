@@ -78,7 +78,8 @@ label-charging = %percentage%%
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
 ;   %percentage_raw%
-label-full = Fully charged
+label-full = 
+label-full-foreground = {{ .colors.nord14 }}
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
@@ -126,7 +127,8 @@ label = %percentage%%
 
 ; Discharging
 label-discharging = ${self.label}
-label-discharging-background = {{ .colors.background }}
+label-discharging-background = {{ .colors.nord0 }}
+label-discharging-foreground = {{ .colors.nord4 }}
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = %{F{{.colors.nord13 }}}<ramp-capacity>%{F-} <label-discharging>
 format-discharging-background = {{ .colors.background }}

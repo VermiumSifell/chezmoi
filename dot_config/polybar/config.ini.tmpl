@@ -27,8 +27,8 @@ monitor = ${env:MONITOR:}
 
 ; dpi = 96
 
-background = {{ .colors.background }}
-foreground = {{ .colors.foreground }}
+background = {{ .colors.nord0 }}
+foreground = {{ .colors.nord4 }}
 
 line-size = 3pt
 
@@ -61,7 +61,7 @@ modules-left = i3
 modules-center = date
 modules-right = eth wlan pulseaudio battery
 {{ else if eq .chezmoi.hostname "AxelLaptop01-archlinux" }}
-modules-left = i3 xwindow
+modules-left = i3
 modules-center = date
 modules-right = filesystem pulseaudio memory cpu wlan eth battery
 {{ else }}
