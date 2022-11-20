@@ -17,11 +17,11 @@ font pango:{{ .fonts.main }} 8
 
 
 
-# Start autorandr (screen management)
-exec --no-startup-id autorandr --change
-
 # Start picom (compositor)
 exec --no-startup-id picom
+
+# Start autorandr (screen management)
+exec --no-startup-id autorandr --change
 
 # Start dunst (notification daemon)
 exec --no-startup-id dunst
