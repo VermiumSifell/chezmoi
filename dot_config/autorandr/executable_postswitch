@@ -7,4 +7,4 @@ notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"
 ~/.config/polybar/launch.sh
 
 # Set background
-feh --no-fehbg --bg-scale '~/.local/share/backgrounds/nord-arch-fullnamelogo.png' &
+feh --no-fehbg --bg-scale ~/.local/share/backgrounds/nord-arch-fullnamelogo.png &
