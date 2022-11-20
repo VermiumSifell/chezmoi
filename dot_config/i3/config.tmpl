@@ -29,6 +29,9 @@ exec --no-startup-id dunst
 # Start polybar (status bar)
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+# Start feh (wallpaper)
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/.local/share/backgrounds/nord-arch-fullnamelogo.png &
+
 # Brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
