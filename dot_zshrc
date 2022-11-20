@@ -125,3 +125,4 @@ fi
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(starship init zsh)"
+eval "$(keychain --eval --quiet id_rsa)"
