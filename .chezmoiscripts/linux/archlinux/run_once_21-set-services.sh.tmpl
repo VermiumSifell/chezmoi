@@ -37,10 +37,10 @@ echo "enabling autorandr"
 sudo systemctl enable autorandr.service
 
 echo "enabling emacs"
-sudo systemctl enable --user emacs.service
+systemctl enable --user emacs.service
 
 echo "enabling clipmenud"
-sudo systemctl enable --user clipmenud.service
+systemctl enable --user clipmenud.service
 
 echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
 {{ end -}}
