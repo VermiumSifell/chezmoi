@@ -27,7 +27,7 @@ exec --no-startup-id picom
 exec --no-startup-id dunst
 
 # Start polybar (status bar)
-exec --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
