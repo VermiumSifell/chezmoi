@@ -1,0 +1,10 @@
+#!/bin/bash
+
+## Notify user about which display profile that is in use
+notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"
+
+## Restart polybar
+~/.config/polybar/launch.sh
+
+# Set background
+~/.fehbg &
