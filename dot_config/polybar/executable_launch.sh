@@ -1,6 +1,8 @@
 #!/bin/env bash
 
-notify-send -u low "restarting polybar"
+notify-send -u low "Polybar" "Terminating instances"
+#Killing instances"
+#Terminating bar instances"
 
 # Terminate already running bar instances
 killall -q polybar
@@ -28,11 +30,10 @@ for bar in $BAR_NAMES; do
         else
             POLYBAR_TRAY_POS="none" MONITOR=$monitor polybar $bar >> /tmp/polybar.log 2>&1 &
         fi
+            notify-send -u low "Polybar" "Launched <b>$bar</b> for <b>$monitor</b>"
 
     done
 
 done
 
 echo "Bars launched..."
-
-notify-send -u low "restarted polybar"
