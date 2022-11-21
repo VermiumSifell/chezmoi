@@ -101,12 +101,14 @@ else
 fi
 
 # Autostart ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
+#if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+#fi
+#if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+#    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+#fi
+
+export SSH_AUTH_SOCK=/run/user/$(id -u)/gcr/ssh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -125,4 +127,3 @@ fi
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(starship init zsh)"
-eval "$(keychain --eval --quiet id_rsa)"

@@ -42,5 +42,9 @@ systemctl enable --user emacs.service
 echo "enabling clipmenud"
 systemctl enable --user clipmenud.service
 
+echo "enabling gnome-keyring"
+systemctl enable --user gnome-keyring-daemon.service
+systemctl enable --user gcr-ssh-agent.service
+
 echo -e "\033[0;32m>>>>> Finish Setting Up Services <<<<<\033[0m"
 {{ end -}}
