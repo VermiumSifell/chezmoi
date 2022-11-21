@@ -58,7 +58,7 @@ format-charging = %{F{{ .colors.nord14 }}}<animation-charging>%{F-} <label-charg
 ;   <bar-capacity>
 ;   <ramp-capacity>
 ; New in version 3.6.0
-;format-low = <label-low> <animation-low>
+format-low = <label-low> <animation-low>
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
@@ -130,5 +130,5 @@ label-discharging = ${self.label}
 label-discharging-background = {{ .colors.nord1 }}
 label-discharging-foreground = {{ .colors.nord4 }}
 
-format-discharging = %{F{{.colors.nord13 }}}<ramp-capacity>%{F-} <label-discharging>
+format-discharging = %{F{{.colors.nord13 }}}<ramp-capacity>%{F-}  <label-discharging>
 format-discharging-background = {{ .colors.nord1 }}
