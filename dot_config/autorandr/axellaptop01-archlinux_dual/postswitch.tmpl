@@ -1,4 +1,4 @@
-if [$GDMSESSION = bspwm]
+if [pstree {{ .chezmoi.username }} | grep bspwm -q]
 then
 	bspc monitor eDP-1 -d 1 2 3 4 5
 	bspc monitor HDMI-1-0 -d 6 7 8 9 10
