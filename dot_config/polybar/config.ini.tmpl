@@ -61,7 +61,7 @@ modules-left = i3
 modules-center = date
 modules-right = eth wlan pulseaudio battery
 {{ else if eq .chezmoi.hostname "AxelLaptop01-archlinux" }}
-modules-left = i3
+modules-left = bspwm
 modules-center = date
 modules-right = filesystem pulseaudio memory cpu wlan eth battery
 {{ else }}
@@ -77,8 +77,8 @@ enable-ipc = true
 ; tray-position = right
 
 ; wm-restack = generic
-; wm-restack = bspwm
-wm-restack = i3
+wm-restack = bspwm
+; wm-restack = i3
 
 ; override-redirect = true
 

@@ -6,7 +6,7 @@ type = internal/bspwm
 ; But if you rename your bspwm monitors with bspc -n this option will no longer
 ; behave correctly.
 ; Default: true
-pin-workspaces = true
+pin-workspaces = false
 
 ; Output mode flags after focused state label
 ; Default: false
@@ -14,7 +14,7 @@ inline-mode = false
 
 ; Create click handler used to focus workspace
 ; Default: true
-enable-click = false
+enable-click = true
 
 ; Create scroll handlers used to cycle workspaces
 ; Default: true
@@ -69,9 +69,13 @@ label-monitor = %name%
 ;   label-dimmed-occupied
 ;   label-dimmed-urgent
 ;   label-dimmed-empty
-label-dimmed-foreground = #555
-label-dimmed-underline = ${bar/top.background}
-label-dimmed-focused-background = #f00
+label-dimmed = %{F{{.colors.nord14 }}}%icon%%{F-} %index%
+label-dimmed-foreground = {{ .colors.nord4 }}
+label-dimmed-background = {{ .colors.nord1 }}
+label-dimmed-underline = {{ .colors.nord1 }}
+label-dimmed-padding = 1
+label-dimmed-focused = %{F{{.colors.nord14 }}}%icon%%{F-} %index%
+; label-dimmed-focused-background = {{ .colors.nord11 }}
 
 ; Available tokens:
 ;   %name%
@@ -89,8 +93,10 @@ label-focused-padding = 1
 ;   %icon%
 ;   %index%
 ; Default: %icon% %name%
-label-occupied = %icon%
-label-occupied-underline = #555555
+label-occupied = %{F{{.colors.nord14 }}}%icon%%{F-} %index%
+label-occupied-foreground = {{ .colors.nord4 }}
+label-occupied-background = {{ .colors.nord1 }}
+label-occupied-underline = {{ .colors.nord1 }}
 
 ; Available tokens:
 ;   %name%
@@ -107,26 +113,29 @@ label-urgent-underline = #9b0a20
 ;   %icon%
 ;   %index%
 ; Default: %icon% %name%
-label-empty = %icon%
-label-empty-foreground = #55
+label-empty = %{F{{.colors.nord14 }}}%icon%%{F-} %index%
+label-empty-foreground = {{ .colors.nord4 }}
+label-empty-background = {{ .colors.nord1 }}
+label-empty-underline = {{ .colors.nord1 }}
+label-empty-padding = 1
 
 ; The following labels will be used to indicate the layout/mode
 ; for the focused workspace. Requires <label-mode>
 ;
 ; Available tokens:
 ;   None
-;label-monocle = 
-;label-tiled = 
-;label-fullscreen = 
-;label-floating = 
-;label-pseudotiled = P
-;label-locked = 
-;label-locked-foreground = #bd2c40
-;label-sticky = 
-;label-sticky-foreground = #fba922
-;label-private = 
-;label-private-foreground = #bd2c40
-;label-marked = M
+label-monocle = 
+label-tiled = 
+label-fullscreen = 
+label-floating = 
+label-pseudotiled = P
+label-locked = 
+label-locked-foreground = #bd2c40
+label-sticky = 
+label-sticky-foreground = #fba922
+label-private = 
+label-private-foreground = #bd2c40
+label-marked = M
 
 ; Separator in between workspaces
 ; label-separator = |
