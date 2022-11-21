@@ -58,7 +58,7 @@ format-charging = %{F{{ .colors.nord14 }}}<animation-charging>%{F-} <label-charg
 ;   <bar-capacity>
 ;   <ramp-capacity>
 ; New in version 3.6.0
-format-low = <animation-low> <label-low> <animation-low>
+format-low = <animation-low> <label-low>
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
@@ -87,7 +87,9 @@ label-full-foreground = {{ .colors.nord14 }}
 ;   %time%
 ;   %consumption% (shows current discharge rate in watts)
 ; New in version 3.6.0
-label-low =  %percentage%
+label-low = %percentage%%
+format-low-background = {{ .colors.nord11 }}
+format-low-padding = 1
 
 ; Only applies if <ramp-capacity> is used
 ramp-capacity-0 = 
@@ -126,9 +128,9 @@ animation-discharging-framerate = 500
 
 ; Only applies if <animation-low> is used
 ; New in version 3.6.0
-animation-low-0 = 
-animation-low-1 = 
-animation-low-framerate = 200
+animation-low-0 = %{F{{.colors.nord3 }}}%{F-}
+animation-low-1 = %{F{{.colors.nord4 }}}%{F-}
+animation-low-framerate = 250
 
 label = %percentage%%
 
