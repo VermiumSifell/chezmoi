@@ -73,7 +73,7 @@ super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
+super + alt + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
@@ -133,3 +133,49 @@ super + alt + shift + {Left,Down,Up,Right}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Brightness
+XF86MonBrightnessDown
+	brightnessctl --min-val=2 -q set 3%-
+XF86MonBrightnessUp
+	brightnessctl -q set 3%+
+
+# Use pactl to adjust volume in PulseAudio.
+XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ +10%
+XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -10%
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Multimedia Keys
+
+XF86AudioPlay
+	playerctl play
+XF86AudioPause
+	playerctl pause
+XF86AudioNext
+	playerctl next
+XF86AudioPrev
+	playerctl previous
+
+# Open clipmenu
+super + c
+	CM_LAUNCHER=rofi clipmenu
+
+# Open emoji selector
+super + x
+	rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C
+
+# Open bluetooth
+super + b
+	rofi-bluetooth
+
+# Open rofi calculator
+super + q
+	rofi -show calc -modi calc -no-show-match -no-sort
+
+Print
+	rofi-screenshot
