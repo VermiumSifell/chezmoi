@@ -1133,6 +1133,7 @@
 (global-set-key (kbd "S-<f8>") 'org-tree-slide-skip-done-toggle)
 
 ;; Load theme.
+(add-to-list 'custom-theme-load-path (expand-file-name "~/.my-emacs/themes/"))
 (setq theme-file "~/.my-emacs/theme.el")
 (when (file-exists-p theme-file)
   (load theme-file))

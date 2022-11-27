@@ -1,1 +1,1 @@
-(load-theme 'doom-dracula t)
+(load-theme 'nord t)
