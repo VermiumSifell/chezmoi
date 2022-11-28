@@ -73,7 +73,7 @@ packages+=(
 {{   end -}}
 
 
-{{	if .i3wm	-}}
+{{	if .windowManagers.i3wm	-}}
 
 packages+=(
 	i3-gaps		## Window Manager
@@ -89,7 +89,7 @@ packages+=(
 {{   end -}}
 
 
-{{   if .emacs -}}
+{{   if .programs.emacs -}}
 
 packages+=(
 	emacs
@@ -103,7 +103,7 @@ aur_packages+=(
 {{   end -}}
 
 
-{{   if .lightdm -}}
+{{   if .displayManagers.lightdm -}}
 
 packages+=(
 	lightdm			## Display Manager

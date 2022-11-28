@@ -2,51 +2,70 @@
 {{- $interactive := stdinIsATTY -}}
 
 {{- /* Template file for chezmoi config file */ -}}
+{{- $programsEmacs := false -}}{{/* true if this machine should have emacs installed */}}
+{{- $programsKubernetes := false -}}{{/* true if this machine is used for Kubernetes work */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
-{{- $kubernetes := false -}}{{/* true if this machine is used for Kubernetes work */}}
-{{- $i3wm := false -}}{{/* true if this machine is using i3wm */}}
-{{- $swaywm := false -}}{{/* true if this machine is using swaywm */}}
-{{- $hyprlandwm := false -}}{{/* true if this machine is using hyprlandwm */}}
-{{- $emacs := false -}}{{/* true if this machine should have emacs installed */}}
-{{- $lightdm := false -}}{{/* true if this machine should have lightdm installed */}}
+{{- $purposesPersonal := false -}}
+{{- $purposesWork := false -}}
+{{- $windowmanagerI3wm := false -}}{{/* true if this machine is using i3wm */}}
+{{- $displaymanagerLightdm := false -}}{{/* true if this machine should have lightdm installed */}}
 
 
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq $hostname "AxelLaptop01-archlinux" -}}
 {{-   $headless = false -}}
-{{-   $kubernetes = true -}}
-{{-   $i3wm = true -}}
-{{-   $swaywm = false -}}
-{{-   $hyprlandwm = false -}}
-{{-   $emacs = true -}}
+{{-   $programsKubernetes = true -}}
+{{-   $windowmanagerI3wm = true -}}
+{{-   $programsEmacs = true -}}
+{{-   $displaymanagerLightdm = true -}}
+{{-   $purposesWork = false -}}
+{{-   $purposesPersonal = true -}}
 {{- end -}}
 {{- if eq $hostname "AxelLaptop02-archlinux" -}}
 {{-   $headless = false -}}
-{{-   $kubernetes = false -}}
-{{-   $i3wm = true -}}
-{{-   $swaywm = false -}}
-{{-   $hyprlandwm = false -}}
-{{-   $emacs = true -}}
+{{-   $programsKubernetes = false -}}
+{{-   $windowmanagerI3wm = true -}}
+{{-   $displaymanagerLightdm = true -}}
+{{-   $programsEmacs = true -}}
+{{-   $purposesWork = true -}}
+{{-   $purposesPersonal = true -}}
 {{- end -}}
 {{- if hasKey . "headless" -}}
 {{-   $headless = .headless -}}
 {{- else if $interactive -}}
 {{-   $headless = promptBool "headless" -}}
 {{- end -}}
-{{- if hasKey . "kubernetes" -}}
-{{-   $kubernetes = .kubernetes -}}
+
+
+{{- if hasKey . "programsKubernetes" -}}
+{{-   $programsKubernetes = .kubernetes -}}
 {{- else if $interactive -}}
-{{-   $kubernetes = promptBool "kubernetes" -}}
+{{-   $programsKubernetes = promptBool "programsKubernetes" -}}
 {{- end -}}
-{{- if hasKey . "emacs" -}}
-{{-   $emacs = .emacs -}}
+{{- if hasKey . "programsEmacs" -}}
+{{-   $programsEmacs = .programsEmacs -}}
 {{- else if $interactive -}}
-{{-   $emacs = promptBool "emacs" -}}
+{{-   $programsEmacs = promptBool "programsEmacs" -}}
 {{- end -}}
-{{- if hasKey . "lightdm" -}}
-{{-   $lightdm = .lightdm -}}
+{{- if hasKey . "purposesPersonal" -}}
+{{-   $purposesPersonal = .purposesPersonal -}}
 {{- else if $interactive -}}
-{{-   $lightdm = promptBool "lightdm" -}}
+{{-   $purposesPersonal = promptBool "purposesPersonal" -}}
+{{- end -}}
+{{- if hasKey . "purposesWork" -}}
+{{-   $purposesWork = .purposesWork -}}
+{{- else if $interactive -}}
+{{-   $purposesWork = promptBool "purposesWork" -}}
+{{- end -}}
+{{- if hasKey . "windowmanagerI3wm" -}}
+{{-   $windowmanagerI3wm = .windowmanagerI3wm -}}
+{{- else if $interactive -}}
+{{-   $windowmanagerI3wm = promptBool "windowmanagerI3wm" -}}
+{{- end -}}
+{{- if hasKey . "displaymanagerLightdm" -}}
+{{-   $displaymanagerLightdm = .displaymanagerLightdm -}}
+{{- else if $interactive -}}
+{{-   $displaymanagerLightdm = promptBool "displaymanagerLightdm" -}}
 {{- end -}}
 
 
@@ -55,13 +74,17 @@
 {{- end -}}
 
 data:
+  purposes:
+    personal: {{ $purposesPersonal }}
+    work: {{ $purposesWork }}
+  windowManagers:
+    i3wm: {{ $windowmanagerI3wm}}
+  displayManagers:
+    lightdm: {{ $displaymanagerLightdm }}
+  programs:
+    emacs: {{ $programsEmacs }}
+    kubernetes: {{ $programsKubernetes }}
   headless: {{ $headless }}
-  kubernetes: {{ $kubernetes }}
-  i3wm: {{ $i3wm }}
-  swaywm: {{ $swaywm }}
-  hyprlandwm: {{ $hyprlandwm }}
-  emacs: {{ $emacs }}
-  lightdm: {{ $lightdm }}
   colors:
   ## Nord
     ## Polar Night

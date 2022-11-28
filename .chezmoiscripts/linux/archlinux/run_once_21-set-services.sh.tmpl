@@ -6,7 +6,7 @@ set -eufo pipefail
 echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
 
 
-{{   if .lightdm -}}
+{{   if .displayManagers.lightdm -}}
   echo "enabling lightdm"
 
 {{-   if ne .chezmoi.username "root" }}
