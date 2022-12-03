@@ -5,7 +5,7 @@ client.focused          {{ .colors.nord2 }} {{ .colors.nord2 }} {{ .colors.nord4
 client.focused_inactive {{ .colors.nord0 }} {{ .colors.nord0 }} {{ .colors.nord4 }} {{ .colors.nord0 }} {{ .colors.nord0 }}
 client.unfocused        {{ .colors.nord0 }} {{ .colors.nord0 }} {{ .colors.nord4 }} {{ .colors.nord0 }} {{ .colors.nord0 }}
 client.urgent           {{ .colors.nord11 }} {{ .colors.nord11 }} {{ .colors.nord4 }} {{ .colors.nord11 }} {{ .colors.nord11 }}
-client.placeholder      {{ .colors.background }} {{ .colors.background }} {{ .colors.foreground }} {{ .colors.background }} {{ .colors.background }}
+client.placeholder      {{ .colors.nord0 }} {{ .colors.nord0 }} {{ .colors.nord4 }} {{ .colors.nord0 }} {{ .colors.nord0 }}
 
 client.background       {{ .colors.nord0 }}
 
@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:{{ .fonts.main }} 8
+font pango:{{ .fonts.normal }} 8
 
 
 

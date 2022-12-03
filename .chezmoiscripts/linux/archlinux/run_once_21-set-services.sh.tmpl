@@ -6,8 +6,7 @@ set -eufo pipefail
 echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
 
 
-{{   if .displayManagers.lightdm -}}
-  echo "enabling lightdm"
+echo "enabling lightdm"
 
 {{-   if ne .chezmoi.username "root" }}
   sudo systemctl enable --force lightdm.service
@@ -15,7 +14,6 @@ echo -e "\033[0;32m>>>>> Setting Up Services <<<<<\033[0m"
   systemctl enable --force lightdm.service
 {{-   end }}
 
-{{   end -}}
 
 
 echo "enabling pipewire"

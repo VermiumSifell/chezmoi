@@ -1,147 +1,61 @@
 {{- /* Checks if running interactively */ -}}
 {{- $interactive := stdinIsATTY -}}
 
-{{- /* Template file for chezmoi config file */ -}}
-{{- $programsEmacs := false -}}{{/* true if this machine should have emacs installed */}}
-{{- $programsKubernetes := false -}}{{/* true if this machine is used for Kubernetes work */}}
-{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
-{{- $purposesPersonal := false -}}
-{{- $purposesWork := false -}}
-{{- $windowmanagerI3wm := false -}}{{/* true if this machine is using i3wm */}}
-{{- $displaymanagerLightdm := false -}}{{/* true if this machine should have lightdm installed */}}
 
 
-{{- $hostname := .chezmoi.hostname -}}
-{{- if eq $hostname "AxelLaptop01-archlinux" -}}
-{{-   $headless = false -}}
-{{-   $programsKubernetes = true -}}
-{{-   $windowmanagerI3wm = true -}}
-{{-   $programsEmacs = true -}}
-{{-   $displaymanagerLightdm = true -}}
-{{-   $purposesWork = false -}}
-{{-   $purposesPersonal = true -}}
+{{- /* Window Managers */ -}}
+{{- $windowManagers_i3wm := false -}}
+
+
+
+{{- /* Machine-specific settings */ -}}
+{{- if eq .chezmoi.hostname "AxelLaptop01-archlinux" -}}
+{{-   $windowManagers_i3wm = true -}}
 {{- end -}}
-{{- if eq $hostname "AxelLaptop02-archlinux" -}}
-{{-   $headless = false -}}
-{{-   $programsKubernetes = false -}}
-{{-   $windowmanagerI3wm = true -}}
-{{-   $displaymanagerLightdm = true -}}
-{{-   $programsEmacs = true -}}
-{{-   $purposesWork = true -}}
-{{-   $purposesPersonal = true -}}
-{{- end -}}
-{{- if hasKey . "headless" -}}
-{{-   $headless = .headless -}}
-{{- else if $interactive -}}
-{{-   $headless = promptBool "headless" -}}
+
+{{- if eq .chezmoi.hostname "AxelLaptop02-archlinux" -}}
+{{-   $windowManagers_i3wm = true -}}
 {{- end -}}
 
 
-{{- if hasKey . "programsKubernetes" -}}
-{{-   $programsKubernetes = .kubernetes -}}
+
+{{- /* Interactive questions */ -}}
+{{- if hasKey .windowManagers "i3wm" -}}
+{{-   $windowManagers_i3wm = .windowManagers.i3wm -}}
 {{- else if $interactive -}}
-{{-   $programsKubernetes = promptBool "programsKubernetes" -}}
+{{-   $windowManagers_i3wm = promptBool "Do you want to install i3wm" -}}
 {{- end -}}
-{{- if hasKey . "programsEmacs" -}}
-{{-   $programsEmacs = .programsEmacs -}}
-{{- else if $interactive -}}
-{{-   $programsEmacs = promptBool "programsEmacs" -}}
-{{- end -}}
-{{- if hasKey . "purposesPersonal" -}}
-{{-   $purposesPersonal = .purposesPersonal -}}
-{{- else if $interactive -}}
-{{-   $purposesPersonal = promptBool "purposesPersonal" -}}
-{{- end -}}
-{{- if hasKey . "purposesWork" -}}
-{{-   $purposesWork = .purposesWork -}}
-{{- else if $interactive -}}
-{{-   $purposesWork = promptBool "purposesWork" -}}
-{{- end -}}
-{{- if hasKey . "windowmanagerI3wm" -}}
-{{-   $windowmanagerI3wm = .windowmanagerI3wm -}}
-{{- else if $interactive -}}
-{{-   $windowmanagerI3wm = promptBool "windowmanagerI3wm" -}}
-{{- end -}}
-{{- if hasKey . "displaymanagerLightdm" -}}
-{{-   $displaymanagerLightdm = .displaymanagerLightdm -}}
-{{- else if $interactive -}}
-{{-   $displaymanagerLightdm = promptBool "displaymanagerLightdm" -}}
-{{- end -}}
+
 
 
 {{- if $interactive -}}
 {{-   writeToStdout "💡 Tip: you can re-enter your data with `chezmoi init --data=false`.\n" -}}
 {{- end -}}
 
+
+
 data:
-  purposes:
-    personal: {{ $purposesPersonal }}
-    work: {{ $purposesWork }}
-  windowManagers:
-    i3wm: {{ $windowmanagerI3wm}}
-  displayManagers:
-    lightdm: {{ $displaymanagerLightdm }}
-  programs:
-    emacs: {{ $programsEmacs }}
-    kubernetes: {{ $programsKubernetes }}
-  headless: {{ $headless }}
   colors:
-  ## Nord
-    ## Polar Night
     nord0: "#2e3440"
     nord1: "#3b4252"
     nord2: "#434c5e"
-    nord3: "#4c566a" # Used for unfocused
-    ## Snow Storm
+    nord3: "#4c566a"
     nord4: "#d8dee9"
     nord5: "#e5e9f0"
     nord6: "#eceff4"
-    ## Frost
     nord7: "#8fbcbb"
     nord8: "#88c0d0"
     nord9: "#81a1c1"
-    nord10: "#5e81ac" # Used for focused
-    ## Aurora
+    nord10: "#5e81ac"
     nord11: "#bf616a"
     nord12: "#d08770"
     nord13: "#ebcb8b"
-    nord14: "#a3be8c" # Used for icon
+    nord14: "#a3be8c"
     nord15: "#b48ead"
-  ## Drarcula
-    background: "#282a36"
-    current_line: "#44475a"
-    foreground: "#f8f8f2"
-    comment: "#6272a4"
-    cyan: "#8be9fd"
-    green: "#50fa7b"
-    orange: "#ffb86c"
-    pink: "#ff79c6"
-    purple: "#bd93f9"
-    red: "#ff5555"
-    yellow: "#f1fa8c"
-    selection: "#44475A"
-    ansiBlack: "#21222C"
-    ansiRed: "#FF5555"
-    ansiGreen: "#50FA7B"
-    ansiYellow: "#F1FA8C"
-    ansiBlue: "#BD93F9"
-    ansiMagenta: "#FF79C6"
-    ansiCyan: "#8BE9FD"
-    ansiWhite: "#F8F8F2"
-    ansiBrightBlack: "#6272A4"
-    ansiBrightRed: "#FF6E6E"
-    ansiBrightGreen: "#69FF94"
-    ansiBrightYellow: "#FFFFA5"
-    ansiBrightBlue: "#D6ACFF"
-    ansiBrightMagenta: "#FF92DF"
-    ansiBrightCyan: "#A4FFFF"
-    ansiBrightWhite: "#FFFFFF"
+  windowManagers:
+    i3wm: {{ $windowManagers_i3wm }}
   fonts:
-    main: "JetbrainsMono Nerd Font"
-#"RobotoMono Nerd Font"
-#"JetbrainsMono Nerd Font"
-#"Roboto"
-#"Fira Code"
+    normal: "JetbrainsMono Nerd Font"
 
 format: yaml
 
@@ -152,5 +66,5 @@ merge:
     - "{{ "{{ .Destination }}" }}"
     - "{{ "{{ .Source }}" }}"
     - "{{ "{{ .Target }}" }}"
-#git:
-#  autoAdd: true
+// git:
+//   autoAdd: true

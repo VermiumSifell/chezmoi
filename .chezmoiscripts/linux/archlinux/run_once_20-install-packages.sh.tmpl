@@ -51,6 +51,11 @@ packages=(
 	rofi-calc		## Rofi Plugin
 	autorandr		## Screen Management
 	gnome-keyring		## Key Management
+	alacritty	## Terminal Emulator
+	emacs
+	meson
+	lightdm			## Display Manager
+	lightdm-gtk-greeter	## LightDM Greeter
 )
 
 aur_packages=(
@@ -61,16 +66,9 @@ aur_packages=(
 	rofi-bluetooth-git		## Rofi Plugin
 	nerd-fonts-jetbrains-mono	## Font
 	nerd-fonts-roboto-mono		## Font
+	mu
 )
 
-
-{{   if (not .headless) -}}
-
-packages+=(
-	alacritty	## Terminal Emulator
-)
-
-{{   end -}}
 
 
 {{	if .windowManagers.i3wm	-}}
@@ -88,29 +86,6 @@ packages+=(
 
 {{   end -}}
 
-
-{{   if .programs.emacs -}}
-
-packages+=(
-	emacs
-	meson
-)
-
-aur_packages+=(
-	mu
-)
-
-{{   end -}}
-
-
-{{   if .displayManagers.lightdm -}}
-
-packages+=(
-	lightdm			## Display Manager
-	lightdm-gtk-greeter	## LightDM Greeter
-)
-
-{{   end -}}
 
 
 echo "updating packages"

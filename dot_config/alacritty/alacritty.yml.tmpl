@@ -1,14 +1,50 @@
-import:
-  - ~/.config/alacritty/themes/nord.yml
+env:
+  TERM: xterm-256color
+  WINIT_X11_SCALE_FACTOR: "1.5"
+
+colors:
+  primary:
+    background: "{{ .colors.nord0 }}"
+    foreground: "{{ .colors.nord4 }}"
+  cursor:
+    text: "{{ .colors.nord0 }}"
+    cursor: "{{ .colors.nord4 }}"
+  vi_mode_cursor:
+    text: "{{ .colors.nord0 }}"
+    cursor: "{{ .colors.nord4 }}"
+  selection:
+    text: CellForeground
+    background: "{{ .colors.nord3 }}"
+  search:
+    matches:
+      foreground: CellBackground
+      background: "{{ .colors.nord8 }}"
+    footer_bar:
+      background: "{{ .colors.nord2 }}"
+      foreground: "{{ .colors.nord4 }}"
+  normal:
+    black: "{{ .colors.nord1 }}"
+    red: "{{ .colors.nord11 }}"
+    green: "{{ .colors.nord14 }}"
+    yellow: "{{ .colors.nord13 }}"
+    blue: "{{ .colors.nord9 }}"
+    magenta: "{{ .colors.nord15 }}"
+    cyan: "{{ .colors.nord8 }}"
+    white: "{{ .colors.nord5 }}"
+  bright:
+    black: "{{ .colors.nord3 }}"
+    red: "{{ .colors.nord11 }}"
+    green: "{{ .colors.nord14 }}"
+    yellow: "{{ .colors.nord13 }}"
+    blue: "{{ .colors.nord9 }}"
+    magenta: "{{ .colors.nord15 }}"
+    cyan: "{{ .colors.nord7 }}"
+    white: "{{ .colors.nord6 }}"
 
 font:
   size: 6.0
   normal:
-    family: {{ .fonts.main }}
+    family: {{ .fonts.normal }}
 
 shell:
   program: zsh
-
-env:
-  TERM: xterm-256color
-  WINIT_X11_SCALE_FACTOR: "1.5"
