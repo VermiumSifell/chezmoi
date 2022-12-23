@@ -1,0 +1,18 @@
+[Default Applications]
+x-scheme-handler/mailto=userapp-Thunderbird-E5NFV1.desktop
+message/rfc822=userapp-Thunderbird-E5NFV1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-E5NFV1.desktop
+x-scheme-handler/postman=Postman.desktop
+text/html=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=userapp-Thunderbird-E5NFV1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-E5NFV1.desktop;
+application/x-shellscript=code-oss.desktop;
+application/octet-stream=code-oss.desktop;
+image/gif=firefox.desktop;
+application/x-ms-dos-executable=steam.desktop;
